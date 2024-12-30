@@ -57,6 +57,11 @@ export class Game {
     
     // 特效计时器
     this.effectTimers = {};
+    
+    // 添加点击事件监听器来初始化音频
+    document.addEventListener('click', () => {
+        this.soundManager.init();  // 添加 init 方法
+    }, { once: true });  // 只执行一次
   }
 
   handleKeyPress(event) {

@@ -1,24 +1,30 @@
 export class SoundManager {
   constructor() {
-    // 音效状态
     this.enabled = true;
+    this.initialized = false;
+    this.sounds = {};
+  }
+
+  init() {
+    if (this.initialized) return;
     
-    // 创建单个音频实例
-    this.sounds = {
-      move: new Audio('/sounds/move.wav'),
-      eat: new Audio('/sounds/eat.wav'),
-      gameOver: new Audio('/sounds/gameover.wav'),
-      background: new Audio('/sounds/background.mp3')
-    };
-
-    // 配置背景音乐
-    this.sounds.background.loop = true;
-    this.sounds.background.volume = 0.3;
-
-    // 配置音效音量
-    this.sounds.move.volume = 0.2;
-    this.sounds.eat.volume = 0.4;
-    this.sounds.gameOver.volume = 0.5;
+    try {
+      // 初始化音频上下文
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      this.audioContext = new AudioContext();
+      
+      // 初始化音效
+      this.sounds = {
+        background: new Audio('./sounds/background.mp3'),
+        eat: new Audio('./sounds/eat.wav'),
+        move: new Audio('./sounds/move.wav'),
+        gameover: new Audio('./sounds/gameover.wav')
+      };
+      
+      this.initialized = true;
+    } catch (error) {
+      console.log('音频初始化失败:', error);
+    }
   }
 
   // 播放指定音效
