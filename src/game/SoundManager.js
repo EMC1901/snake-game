@@ -15,10 +15,10 @@ export class SoundManager {
       
       // 初始化音效
       this.sounds = {
-        background: new Audio('./sounds/background.mp3'),
-        eat: new Audio('./sounds/eat.wav'),
-        move: new Audio('./sounds/move.wav'),
-        gameover: new Audio('./sounds/gameover.wav')
+        background: new Audio('/snake-game/sounds/background.mp3'),
+        eat: new Audio('/snake-game/sounds/eat.wav'),
+        move: new Audio('/snake-game/sounds/move.wav'),
+        gameover: new Audio('/snake-game/sounds/gameover.wav')
       };
       
       this.initialized = true;
